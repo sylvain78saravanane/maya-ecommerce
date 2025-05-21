@@ -1,42 +1,58 @@
+// app/connexionAdmin/page.tsx
 "use client"
-
-// TODO : Créer la page de connexion Admin
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import Image from "next/image"
+import Link from "next/link"
 import { useAuth } from "@/hooks/use-auth"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useToast } from "@/hooks/use-toast"
+import { Shield, Lock, AtSign, KeyRound } from "lucide-react"
 
-export default function LoginAdminPage() {
-    const [loginAdminEmail, setAdminEmail] = useState("")
-    const [loginAdminPassword, setAdminPassword] = useState("")
-    const [codeAdmin, setCodeAdmin] = useState("")
+export default function AdminLoginPage() {
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [adminCode, setAdminCode] = useState("")
     const [isLoading, setIsLoading] = useState(false)
 
-    const { loginAdmin, registrerAdmin } = useAuth()
     const router = useRouter()
+    const { loginAdmin } = useAuth()
     const { toast } = useToast()
 
-    const handleLoginAdmin = async (e: React.FormEvent) => {
+    const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault()
         setIsLoading(true)
 
         try {
-            await loginAdmin(loginAdminEmail, loginAdminPassword)
+            // Validate form
+            if (!email || !password || !adminCode) {
+                toast({
+                    title: "Erreur de validation",
+                    description: "Tous les champs sont obligatoires",
+                    variant: "destructive",
+                })
+                setIsLoading(false)
+                return
+            }
+
+            // Call admin login API
+            await loginAdmin(email, password, adminCode)
+            
             toast({
                 title: "Connexion réussie",
-                description: "Vous êtes maintenant connecté à votre compte admin.",
+                description: "Bienvenue dans l'interface d'administration",
             })
+            
             router.push("/admin")
         } catch (error) {
+            console.error("Login error:", error)
             toast({
                 title: "Erreur de connexion",
-                description: "Email ou mot de passe incorrect.",
+                description: "Email, mot de passe ou code admin incorrect",
                 variant: "destructive",
             })
         } finally {
@@ -45,61 +61,96 @@ export default function LoginAdminPage() {
     }
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-100">
-            <Card className="w-full max-w-md">
-                <CardHeader>
-                    <CardTitle>Connexion Administrateur</CardTitle>
-                    <CardDescription>
-                        Connectez-vous à votre compte admin pour gérer le site.
-                    </CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <Tabs defaultValue="login" className="w-full">
-                        <TabsContent value="login">
-                            <form onSubmit={handleLoginAdmin} className="space-y-4">
-                                <div>
-                                    <Label htmlFor="email">Email</Label>
+        <div className="flex min-h-screen items-center justify-center bg-muted/30">
+            <div className="w-full max-w-md px-4">
+                <div className="flex flex-col items-center justify-center mb-8">
+                    <div className="mb-4">
+                        <Shield className="h-12 w-12 text-primary" />
+                    </div>
+                    <h1 className="text-3xl font-bold">Administration MAYA</h1>
+                    <p className="text-muted-foreground mt-2">Connexion à l'interface d'administration</p>
+                </div>
+                
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Connexion Administrateur</CardTitle>
+                        <CardDescription>
+                            Accédez à l'interface de gestion du site
+                        </CardDescription>
+                    </CardHeader>
+                    <form onSubmit={handleLogin}>
+                        <CardContent className="space-y-4">
+                            <div className="space-y-2">
+                                <Label htmlFor="email">Email</Label>
+                                <div className="relative">
+                                    <AtSign className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                                     <Input
                                         id="email"
                                         type="email"
-                                        value={loginAdminEmail}
-                                        onChange={(e) => setAdminEmail(e.target.value)}
+                                        placeholder="admin@maya-bags.com"
+                                        className="pl-10"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
                                         required
                                     />
                                 </div>
-                                <div>
-                                    <Label htmlFor="password">Mot de passe</Label>
+                            </div>
+                            
+                            <div className="space-y-2">
+                                <Label htmlFor="password">Mot de passe</Label>
+                                <div className="relative">
+                                    <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                                     <Input
                                         id="password"
                                         type="password"
-                                        value={loginAdminPassword}
-                                        onChange={(e) => setAdminPassword(e.target.value)}
+                                        placeholder="••••••••"
+                                        className="pl-10"
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
                                         required
                                     />
                                 </div>
-                                <div>
-                                    <Label htmlFor="code">Code Admin</Label>
+                            </div>
+                            
+                            <div className="space-y-2">
+                                <Label htmlFor="adminCode">Code Administrateur</Label>
+                                <div className="relative">
+                                    <KeyRound className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                                     <Input
-                                        id="code"
+                                        id="adminCode"
                                         type="text"
-                                        value={codeAdmin}
-                                        onChange={(e) => setCodeAdmin(e.target.value)}
+                                        placeholder="Code secret"
+                                        className="pl-10"
+                                        value={adminCode}
+                                        onChange={(e) => setAdminCode(e.target.value)}
                                         required
                                     />
                                 </div>
-                                <Button type="submit" disabled={isLoading}>
-                                    {isLoading ? "Chargement..." : "Se connecter"}
-                                </Button>
-                            </form>
-                        </TabsContent>
-
-                        {/* Register Tab */}
-                        <TabsContent value="register">
-                            {/* Registration form can be added here */}
-                        </TabsContent>
-                    </Tabs>
-                </CardContent>
-            </Card>
+                                <p className="text-xs text-muted-foreground">
+                                    Code fourni uniquement aux administrateurs autorisés
+                                </p>
+                            </div>
+                        </CardContent>
+                        
+                        <CardFooter className="flex flex-col">
+                            <Button type="submit" className="w-full" disabled={isLoading}>
+                                {isLoading ? "Connexion en cours..." : "Se connecter"}
+                            </Button>
+                            
+                            <div className="mt-6 text-center">
+                                <Link href="/" className="text-sm text-muted-foreground hover:text-accent">
+                                    Retour au site
+                                </Link>
+                            </div>
+                        </CardFooter>
+                    </form>
+                </Card>
+                
+                <div className="text-center mt-8 text-sm text-muted-foreground">
+                    <p>© {new Date().getFullYear()} MAYA. Tous droits réservés.</p>
+                    <p className="mt-1">Accès réservé aux administrateurs</p>
+                </div>
+            </div>
         </div>
     )
 }

@@ -18,7 +18,7 @@ const featuredProducts = [
     id: "1",
     name: "Sac Bohème",
     price: 89.99,
-    image: "/placeholder.svg?height=500&width=500",
+    image: "/sac.jpg?height=500&width=500",
     category: "Sacs à main",
   },
   {
@@ -114,7 +114,7 @@ export default function Home() {
             <div className="md:w-1/2 relative">
               <div className="relative h-[400px] md:h-[500px] w-full">
                 <Image
-                  src="/placeholder.svg?height=1000&width=800"
+                  src="/sac.jpg?height=1000&width=500"
                   alt="Sac en crochet MAYA"
                   fill
                   className="object-cover rounded-lg"

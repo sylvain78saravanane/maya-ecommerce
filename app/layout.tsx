@@ -1,9 +1,10 @@
-import type React from "react"
+// app/layout.tsx
+import React from "react"
 import { Inter } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
-import AuthProvider from "@/components/auth-provider"
+import { AuthProvider } from "@/hooks/use-auth"  // Assure-toi que c’est bien exporté comme named export
 import { CartProvider } from "@/components/cart-provider"
 import { Toaster } from "@/components/ui/toaster"
 import "./globals.css"
@@ -14,7 +15,6 @@ export const metadata = {
   title: "MAYA - Sacs en Crochet Artisanaux",
   description:
     "Découvrez notre collection de sacs en crochet faits à la main, alliant artisanat traditionnel et design moderne.",
-    generator: 'v0.dev'
 }
 
 export default function RootLayout({
