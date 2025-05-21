@@ -3,7 +3,6 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import Image from "next/image"
 import Link from "next/link"
 import { useAuth } from "@/hooks/use-auth"
 import { Button } from "@/components/ui/button"
@@ -11,7 +10,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { useToast } from "@/hooks/use-toast"
-import { Shield, Lock, AtSign, KeyRound } from "lucide-react"
+import { Lock, AtSign, KeyRound } from "lucide-react"
 
 export default function AdminLoginPage() {
     const [email, setEmail] = useState("")
@@ -63,10 +62,7 @@ export default function AdminLoginPage() {
     return (
         <div className="flex min-h-screen items-center justify-center bg-muted/30">
             <div className="w-full max-w-md px-4">
-                <div className="flex flex-col items-center justify-center mb-8">
-                    <div className="mb-4">
-                        <Shield className="h-12 w-12 text-primary" />
-                    </div>
+                <div className="flex flex-col items-center justify-center mb-8" style={{ marginTop: "5rem" }}>
                     <h1 className="text-3xl font-bold">Administration MAYA</h1>
                     <p className="text-muted-foreground mt-2">Connexion à l'interface d'administration</p>
                 </div>
