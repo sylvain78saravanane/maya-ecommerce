@@ -3,9 +3,9 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 
 export const metadata = {
-  title: "Comment sont fabriqués nos sacs | MAYA",
+  title: "Comment sont fabriqués nos produits | MAYA",
   description:
-    "Découvrez le processus de fabrication artisanal de nos sacs en crochet, de la sélection des matériaux à la finition.",
+    "Découvrez le processus de fabrication artisanal de nos produits en crochet, de la sélection des matériaux à la finition.",
 }
 
 export default function FabricationPage() {
@@ -24,7 +24,7 @@ export default function FabricationPage() {
             />
             <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
               <div className="text-center text-white max-w-3xl px-4">
-                <h1 className="text-4xl md:text-5xl font-bold mb-4">Comment sont fabriqués nos sacs</h1>
+                <h1 className="text-4xl md:text-5xl font-bold mb-4">Comment sont fabriqués nos produits</h1>
                 <p className="text-lg">Découvrez le savoir-faire artisanal derrière chaque création MAYA</p>
               </div>
             </div>
