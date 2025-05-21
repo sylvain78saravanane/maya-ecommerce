@@ -53,6 +53,7 @@ const Header = () => {
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled ? "bg-background/95 backdrop-blur-sm shadow-sm py-2" : "bg-transparent py-4",
       )}
+      style={isScrolled ? { backgroundColor: "#A08D76" } : undefined}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
