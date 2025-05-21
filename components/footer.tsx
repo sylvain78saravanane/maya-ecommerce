@@ -82,12 +82,7 @@ const Footer = () => {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link href="/notre-histoire" className="hover:text-accent">
-                  Notre Histoire
-                </Link>
-              </li>
-              <li>
-                <Link href="/fabrication" className="hover:text-accent">
-                  Comment sont fabriqués nos sacs
+                  Comment sont fabriqués nos produits ?
                 </Link>
               </li>
               <li>
