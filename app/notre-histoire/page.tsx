@@ -195,7 +195,7 @@ export default function FabricationPage() {
             la pièce qui vous correspond.
           </p>
           <Button asChild size="lg">
-            <Link href="/boutique">Voir la collection</Link>
+            <Link href="/boutique">Voir la boutique</Link>
           </Button>
         </section>
       </div>
