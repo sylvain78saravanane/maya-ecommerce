@@ -121,7 +121,7 @@ export default function LoginPage() {
                   <div className="mt-4 text-center text-sm text-muted-foreground">
                     Pas encore de compte?{" "}
                     <button
-                      onClick={() => document.querySelector('[data-value="register"]')?.click()}
+                      onClick={() => (document.querySelector('[data-value="register"]') as HTMLElement | null)?.click()}
                       className="underline text-accent p-0 h-auto bg-transparent"
                     >
                       S&apos;inscrire
@@ -181,7 +181,7 @@ export default function LoginPage() {
                   <div className="mt-4 text-center text-sm text-muted-foreground">
                     Déjà un compte?{" "}
                     <button
-                      onClick={() => document.querySelector('[data-value="login"]')?.click()}
+                      onClick={() => (document.querySelector('[data-value="login"]') as HTMLElement | null)?.click()}
                       className="underline text-accent p-0 h-auto bg-transparent"
                     >
                       Se connecter

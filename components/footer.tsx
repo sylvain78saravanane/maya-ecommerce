@@ -128,7 +128,7 @@ const Footer = () => {
               <Link href="/confidentialite" className="hover:text-accent">
                 Politique de confidentialité
               </Link>
-              <Link href="/cgv" className="hover:text-accent">
+              <Link href="/conditions-generales" className="hover:text-accent">
                 CGV
               </Link>
             </div>
