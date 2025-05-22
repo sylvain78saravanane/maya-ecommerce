@@ -148,6 +148,20 @@ export default function ProductPage({ params }: { params: { id: string } }) {
                 )}
               </p>
 
+              {/* Rubrique de personnalisation */}
+              <div className="mb-4">
+                <label htmlFor="personalisation" className="block text-sm font-medium mb-1">
+                  Ajouter une personnalisation (optionnel)
+                </label>
+                <textarea
+                  id="personalisation"
+                  name="personalisation"
+                  rows={2}
+                  className="w-full border border-border rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-accent"
+                  placeholder="Ex : Joyeux anniversaire, Sophie !"
+                ></textarea>
+              </div>
+
               <AddToCartButton product={product} />
             </div>
 

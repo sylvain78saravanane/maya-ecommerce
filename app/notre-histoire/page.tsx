@@ -24,7 +24,12 @@ export default function FabricationPage() {
             />
             <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
               <div className="text-center text-white max-w-3xl px-4">
-                <h1 className="text-4xl md:text-5xl font-bold mb-4">Comment sont fabriqués nos produits</h1>
+                <h1 className="text-4xl md:text-5xl font-bold mb-4">Comment sont fabriqués nos produits qui sont</h1>
+                <h1 className="text-4xl md:text-5xl font-bold mb-4">
+                  <span className="text-blue-800">MADE</span>{' '}
+                  <span className="text-white">IN</span>{' '}
+                  <span className="text-red-800">FRANCE</span>
+                </h1>
                 <p className="text-lg">Découvrez le savoir-faire artisanal derrière chaque création MAYA</p>
               </div>
             </div>

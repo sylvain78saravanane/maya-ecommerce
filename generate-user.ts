@@ -26,3 +26,5 @@ main()
   })
   .finally(() => prisma.$disconnect())
 
+  // TODO : Realiser le script pour checkout et la confirmation de commande de manière cohérente.
+

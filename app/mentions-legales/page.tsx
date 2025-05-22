@@ -26,7 +26,7 @@ const MentionsLegales = () => {
         <h2 className="text-2xl font-semibold mb-4">3. Hébergement</h2>
         <p>
           Le site est hébergé par : <br />
-          <strong>[Nom de l’hébergeur]</strong> <br />
+          <strong>Vercel</strong> <br />
           Adresse : [Adresse complète de l’hébergeur] <br />
           Téléphone : [Numéro de téléphone de l’hébergeur]
         </p>
